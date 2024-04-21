@@ -62,14 +62,16 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   showDayPlanButton: {
-    backgroundColor: 'blue',
+    backgroundColor: 'deepskyblue',
     padding: 10,
     borderRadius: 5,
     margin: 10,
+    alignItems: 'center', 
+    justifyContent: 'center', 
   },
   showDayPlanButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
   },
