@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const TaskForm = ({ selectedDate, onSave, onClose }) => {
   const [taskName, setTaskName] = useState('');
-  const [time, setTime] = useState('');
-  const [priority, setPriority] = useState(''); // State to hold selected priority
+  const [time, setTime] = useState(new Date());
+  const [priority, setPriority] = useState('');
+  const [showTimePicker, setShowTimePicker] = useState(false);
 
   const handleSave = () => {
     onSave({ taskName, time, priority });
     setTaskName('');
-    setTime('');
     setPriority('');
     onClose();
   };
@@ -24,12 +25,23 @@ const TaskForm = ({ selectedDate, onSave, onClose }) => {
         value={taskName}
         onChangeText={setTaskName}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Time"
-        value={time}
-        onChangeText={setTime}
-      />
+      <Text style={styles.subHeading}>Time</Text>
+      <TouchableOpacity onPress={() => setShowTimePicker(true)} style={styles.timePicker}>
+        <Text style={styles.timePickerText}>{time.toLocaleTimeString()}</Text>
+      </TouchableOpacity>
+      {showTimePicker && (
+        <DateTimePicker
+          value={time}
+          mode="time"
+          display="clock"
+          onChange={(event, selectedTime) => {
+            setShowTimePicker(false);
+            if (selectedTime) {
+              setTime(selectedTime);
+            }
+          }}
+        />
+      )}
       <Text style={styles.subHeading}>Priority</Text>
       <View style={styles.radioContainer}>
         <RadioButton.Group onValueChange={(value) => setPriority(value)} value={priority}>
@@ -59,8 +71,12 @@ const TaskForm = ({ selectedDate, onSave, onClose }) => {
         </RadioButton.Group>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Save" onPress={handleSave} color="blue" />
-        <Button title="Cancel" onPress={onClose} color="red" />
+        <TouchableOpacity onPress={handleSave} style={[styles.button, { backgroundColor: 'blue' }]}>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onClose} style={[styles.button, { backgroundColor: 'red' }]}>
+          <Text style={styles.buttonText}>Cancel</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -102,6 +118,27 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  button: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  timePicker: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
+  timePickerText: {
+    color: 'black',
+    fontSize: 16,
   },
 });
 

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Button, ScrollView, Text } from 'react-native';
+import { View, Button, ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native'; 
 import Calendar from '../components/Calender';
 import TaskForm from '../components/TaskForm';
 import TaskDialog from '../components/TaskDialog';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const navigation = useNavigation();
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
@@ -32,6 +34,11 @@ const HomeScreen = () => {
     });
   };
 
+  const handleShowDayPlan = () => {
+    // Navigate to the DayPlan screen
+    navigation.navigate('DayPlan', { tasks: tasks[selectedDate] || [] });
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Calendar onDateSelect={handleDateSelect} />
@@ -46,8 +53,26 @@ const HomeScreen = () => {
       <ScrollView>
         <TaskDialog tasks={tasks[selectedDate] || []} />
       </ScrollView>
+      <TouchableOpacity onPress={handleShowDayPlan} style={styles.showDayPlanButton}>
+        <Text style={styles.showDayPlanButtonText}>Show Day Plan</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  showDayPlanButton: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+  },
+  showDayPlanButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
 
 export default HomeScreen;

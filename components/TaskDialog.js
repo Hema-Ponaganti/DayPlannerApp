@@ -11,7 +11,7 @@ const TaskDialog = ({ tasks }) => {
         <View key={index} style={styles.taskContainer}>
           <View style={styles.taskBox}>
             <Text style={styles.taskName}>Task Name: {task.taskName}</Text>
-            <Text style={styles.time}>Time: {task.time}</Text>
+            <Text style={styles.time}>Time: {task.time.toLocaleTimeString()}</Text>
             <Text style={styles.priority}>Priority: {task.priority}</Text>
           </View>
         </View>
