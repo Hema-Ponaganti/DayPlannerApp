@@ -22,7 +22,14 @@ const HomeScreen = () => {
   };
 
   const handleSaveTask = (taskData) => {
-    setTasks([...tasks, taskData]);
+    setTasks((prevTasks) => {
+      const updatedTasks = { ...prevTasks };
+      if (!updatedTasks[selectedDate]) {
+        updatedTasks[selectedDate] = [];
+      }
+      updatedTasks[selectedDate].push(taskData);
+      return updatedTasks;
+    });
   };
 
   return (
@@ -37,7 +44,7 @@ const HomeScreen = () => {
         />
       )}
       <ScrollView>
-        <TaskDialog tasks={tasks} />
+        <TaskDialog tasks={tasks[selectedDate] || []} />
       </ScrollView>
     </View>
   );

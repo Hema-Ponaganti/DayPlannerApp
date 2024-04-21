@@ -7,9 +7,9 @@ const TaskDialog = ({ tasks }) => {
       <Text>Tasks for selected date:</Text>
       {tasks.map((task, index) => (
         <View key={index}>
-          <Text>{task.taskName}</Text>
-          <Text>{task.time}</Text>
-          <Text>{task.priority}</Text>
+          <Text>Task Name: {task.taskName}</Text>
+          <Text>Time: {task.time}</Text>
+          <Text>Priority: {task.priority}</Text>
         </View>
       ))}
     </View>
