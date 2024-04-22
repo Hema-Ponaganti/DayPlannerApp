@@ -36,8 +36,7 @@ The key features of DayPlanner App are:
 
 Going forward we want to integrate machine learning models into this application which generates a diary entry at the end of the day based on the number of tasks the user has completed . The user can use this dairy as a memory or a feedback and refelect on it to perform better the next day.
  
-**Screens**
-##Home Screen:
+**components**
 On opening the app the users are greeted with the Home Screen 
 ###Calendar Component: 
 On the home screen calender componenet is displayed which  allows users to select  specific date.
@@ -46,21 +45,17 @@ On the home screen calender componenet is displayed which  allows users to selec
 ###Task Form: 
 on clicking "Add Task" button a task form is opened where the users can input details such as task name , time , and priority .
 ###Task List: 
-Below the task form , a scrollable list displays all tasks scheduled for the selected date. Each task is presented with its name, time, and priority.
-###Show Day Plan Button: 
-A button labeled "Show Day Plan" is positioned at the bottom of the screen. Clicking this button redirects users to the Day Plan Screen, where they can view all tasks scheduled for the selected date in chronological order.
-##Task Form Screen:
-###Input Fields: Users can input details such as task name, time, and priority using dedicated input fields.
-###Save Button: A button labeled "Save" allows users to save the task after entering all relevant information.
-###Close Button: Another button labeled "Close" enables users to discard the task and return to the Home Screen without saving.
-##Day Plan Screen:
-###Task List: 
-A scrollable list displays all tasks scheduled for the selected date in chronological order. Each task includes details such as task name, time, and priority.
-##Task Styling: 
-Tasks may be styled using graphics, icons, or relevant visuals to enhance the screen's visual appeal and usability.
+ A scrollable list of  all tasks scheduled are displayed for the selected date. Each task is presented with its name , time, and priority .
+###Show Day Plan : 
+"ShowDay Plan" button in the bottom of the screen . Clicking which redirects users to the Day Plan Screen , where they can view all tasks scheduled for the selected date in chronological order .
 
-**Code Explanation**:
 
+
+![Landingpage](1.png)
+![Home Screen](2.png)
+![Task form](3.png)
+![Task list](4.png)
+![Task dialog](5.png)
 
 **Languages used**: JavaScript
 **Platform used**: Visual Studio
